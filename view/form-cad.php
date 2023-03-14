@@ -18,7 +18,7 @@
     <!-- Bootstrap CDN CSS -->    
     <?php echo GlobalConfig::$BOOTSTRAP_CSS_CDN ?>
 
-    <title>SisProd - Sistema Simples de Cadastro de Produto</title>
+    <title>Sistema de Agenda de Contatos</title>
 </head>
 <body>
     <header>
@@ -29,25 +29,22 @@
     <main class="container-fluid" id="main-container">        
         <form id="form-cad-prod">
                 <div class="form-group">
-                    <label for="input-name">Nome produto</label>
-                    <input type="text" class="form-control" id="input-name" name="nome" required placeholder="Informe o nome do produto">                
+                    <label for="input-name">Nome</label>
+                    <input type="text" class="form-control" id="input-name" name="nome" required placeholder="Informe o nome">                
                 </div>
                 <div class="form-group">
-                    <label for="input-category">Categoria</label>
-                    <select class="form-control" id="select-category" name="categoria">
-                        <option value="selecione" selected>SELECIONE</option>
-                        <option value="ALIMENTOS">ALIMENTOS</option>
-                        <option value="BEBIDAS">BEBIDAS</option>
-                        <option value="HIGIENE">HIGIENE</option>
-                        <option value="LIMPEZA">LIMPEZA</option>
-                        <option value="OUTROS">OUTROS</option>
-                    </select>                
+                    <label for="input-quantity">Telefone</label>
+                    <input type="text" class="form-control" id="input-quantity" required name="telefone" placeholder="Informe o telefone" onkeypress="return isNumber(event)">
                 </div>
-                <div class="form-group">
-                    <label for="input-quantity">Quantidade</label>
-                    <input type="text" class="form-control" id="input-quantity" required name="quantidade" placeholder="Informe a quantidade" onkeypress="return isNumber(event)">
+                <div>
+                    <label for="input-email">Email</label>
+                    <input type="text" class="form-control" id="input-email" required name="email" placeholder="Informe o email">
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <div>
+                    <label for="input-address">Foto</label>
+                    <input type="file" class="form-control" id="input-address" required name="foto" placeholder="Selecione a foto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Cadastrar</button>
                 <input hidden type="text" name="_acao" value="cadastrar">
             </form>
     </main>      

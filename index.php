@@ -33,7 +33,7 @@
         }
     </style>
 
-    <title>SisProd - Sistema Simples de Cadastro de Produtos</title>
+    <title>Sistema de Agenda de Contatoss</title>
 </head>
 <body>
     <header>

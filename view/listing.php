@@ -18,7 +18,7 @@
     <!-- Bootstrap CDN CSS -->    
     <?php echo GlobalConfig::$BOOTSTRAP_CSS_CDN ?>
 
-    <title>SisProd - Sistema Simples de Cadastro de Produto</title>
+    <title>Sistema de Agenda de Contatos</title>
 </head>
 <body>
     <header>
