@@ -1,16 +1,16 @@
 <?php
-    
-    include_once "ProdutoController.class.php";
 
-    
-    $produtoController = new ProdutoController();
+include_once "ContatoController.class.php";
 
-    try {           
-        //echo $produtoController->cadastrar();
-        echo $produtoController->buscarTodosProdutos();
 
-    } catch (Exception $ex) {
-        echo 'Mensagem da Exceção ocorrida: '.$ex->getMessage();
-    }
-    
+$contatoController = new ContatoController();
+
+try {
+    //echo $contatoController->cadastrar();
+    echo $contatoController->buscarTodosContatos();
+
+} catch (Exception $ex) {
+    echo 'Mensagem da Exceção ocorrida: ' . $ex->getMessage();
+}
+
 ?>
