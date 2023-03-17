@@ -159,7 +159,7 @@ class ContatoDao
     /**
      * Summary:
      * Método que busca todos os contatos cadastrados na base de dados.
-     * @param nenhum
+     * 
      * @return array: Retorna uma array associativo do tipo arr(key -> value) com os
      * dados do contato, ou um array vazio caso nenhum contato seja encontrado
      */

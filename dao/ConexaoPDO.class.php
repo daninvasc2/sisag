@@ -42,7 +42,7 @@ class ConexaoPDO
      * Summary.
      * Executa a query após a preparação da mesma (INSERT, UPDATE and DELETE
      * @param $preparedStmt: Statement contendo a query pronta para execuçãos
-     * @return rowCount: Número de linhas afetadas pela execução da query.
+     * @return int: Número de linhas afetadas pela execução da query.
      *
      * Obs.: Na tentativa de atualização (UPDATE) pode ocorrer de o campo a ser atualizado ser
      * igual ao valor que já está na tabela, neste caso rowcount retornará 0 (Nenhuma linha atualizada),
