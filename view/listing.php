@@ -41,10 +41,10 @@ include_once '../config/GlobalConfig.php';
         <table class="table" id="table-contatos" hidden>
             <thead>
                 <tr>
-                    <th scope="col">img</th>
-                    <th scope="col">nome</th>
-                    <th scope="col">tel</th>
-                    <th scope="col">email</th>
+                    <th scope="col">Foto de perfil</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
