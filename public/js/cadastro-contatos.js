@@ -1,6 +1,8 @@
 // registrando o listener do evento submit no form de cadastro
 formCadastrar = $("#form-cad-prod").on("submit", formValidate);
 
+const controllerURL = "../controller/ContatoController.class.php";
+
 // função básica de validação do campo select
 function formValidate(evt) {
     // necessário selecionar pelo menos uma categoria
@@ -8,9 +10,41 @@ function formValidate(evt) {
     formSubmit(evt);
 }
 
+const idContato = $("#idContato").val();
+if (idContato != null && idContato != "") {
+    $.ajax({
+        type: "GET",
+        url: controllerURL + "?_acao=getContato&id=" + idContato,
+        success: function (data) {
+            const retorno = JSON.parse(data);
+            if (retorno.status_code == 200) {
+                const contato = retorno.contato;
+                $("#input-name").val(contato.nome);
+                $("#input-phone").val(contato.telefone);
+                $("#input-email").val(contato.email);
+                $("#input-image").attr("required", false);
+                const img = document.createElement("img");
+                img.src = '../' + contato.caminho_foto;
+                img.alt = 'Foto de ' + contato.nome;
+                img.classList.add('img-perfil');
+
+                const divImage = $("#div-image");
+                divImage.append(img);
+
+                $("#acao").val("editar");
+                $("#btn-submit").html("Editar");
+            } else {
+                alert("Erro ao carregar contato!");
+            }
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+
 // realizando a requisição AJAX
 function formSubmit(evt) {
-    const controllerURL = "../controller/ContatoController.class.php";
     evt.preventDefault();
 
     let form = document.getElementById("form-cad-prod");
@@ -53,7 +87,7 @@ function showModalResult() {
         keyboard: false
     });
 
-    window.location.href = "listing.php";
+    // window.location.href = "listing.php";
 }
 
 // handles success request

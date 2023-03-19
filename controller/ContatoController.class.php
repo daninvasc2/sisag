@@ -52,6 +52,14 @@ class ContatoController
             case 'cadastrar':
                 $this->cadastrar();
                 break;
+            
+            case 'editar':
+                $this->atualizar();
+                break;
+
+            case 'deletar':
+                $this->deletar();
+                break;
             // poderiam existir outras ações a serem executadas com POST
             default:
                 echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Ação desconhecida', 'status_code' => 0));
@@ -63,6 +71,10 @@ class ContatoController
         switch ($_acao) {
             case 'listar':
                 $this->buscarTodosContatos();
+                break;
+            
+            case 'getContato':
+                $this->buscarPorId($_GET['id']);
                 break;
             // poderiam existir outras ações a serem executadas com GET
             default:
@@ -87,7 +99,6 @@ class ContatoController
             } else {
                 $caminho_foto = null;
             }
-
 
             $contato = new Contato(0, $nome, $telefone, $email, $caminho_foto);
             if (!$this->daoContato->contatoExiste('nome', $contato->get('nome'))) {
@@ -120,6 +131,20 @@ class ContatoController
     public function atualizar()
     {
         try {
+            extract($_POST);
+            $caminho_foto = null;
+            if ($_FILES['foto']['name'] != '') {
+                $caminho_foto = 'uploads/' . time() . $_FILES['foto']['name'];
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../' . $caminho_foto);
+            }
+
+            $fields = array('nome' => $nome, 'telefone' => $telefone, 'email' => $email);
+
+            if ($caminho_foto != null) {
+                $fields['caminho_foto'] = $caminho_foto;
+            }
+
+            $this->daoContato->atualizarContato($idContato, $fields);
             echo json_encode(array('message' => 'Contato atualizado com sucesso', 'status_code' => 1));
         } catch (Exception $ex) {
             echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar atualizar o contato.<br>Mensagem: ' . $ex->getMessage(), 'status_code' => 0));
@@ -129,16 +154,18 @@ class ContatoController
     public function deletar()
     {
         try {
+            $this->daoContato->deletarContato($_POST['idContato']);
             echo json_encode(array('message' => 'Contato excluído com sucesso', 'status_code' => 1));
         } catch (Exception $ex) {
             echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar excluir o contato.<br>Mensagem: ' . $ex->getMessage(), 'status_code' => 0));
         }
     }
 
-    public function buscarPorId()
+    public function buscarPorId($id)
     {
         try {
-            echo json_encode(array('message' => 'Contato encontrado', 'status_code' => 1));
+            $contato = $this->daoContato->buscarContatoPorId($id);
+            echo json_encode(array('message' => 'Contato encontrado', 'status_code' => 200, 'contato' => $contato[0]));
         } catch (Exception $ex) {
             echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar recuperar o contato.<br>Mensagem: ' . $ex->getMessage(), 'status_code' => 0));
         }

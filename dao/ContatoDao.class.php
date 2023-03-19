@@ -64,10 +64,11 @@ class ContatoDao
     public function deletarContato($idContato)
     {
         $retorno = false;
-        $query = "DELETE FROM contato WHERE idContato = :idContato";
+        $query = "DELETE FROM contato WHERE idContato = :idContato and usuarioId = :usuarioId";
 
         // fields to bind
-        $fields = array(':idContato' => $idContato);
+        session_start();
+        $fields = array(':idContato' => $idContato, ':usuarioId' => $_SESSION['usuario']['id']);
 
         try {
             $this->conexao->connect();
@@ -106,10 +107,11 @@ class ContatoDao
                 $query .= ", ";
         }
 
-        $query .= " WHERE idContato = :idContato";
+        $query .= " WHERE idContato = :idContato and usuarioId = :usuarioId";
 
         // fields to bind
-        $fields = array(':idContato' => $idContato);
+        session_start();
+        $fields = array(':idContato' => $idContato, ':usuarioId' => $_SESSION['usuario']['id']);
 
         try {
             $this->conexao->connect();
@@ -188,9 +190,10 @@ class ContatoDao
      */
     public function buscarContatoPorId($idContato)
     {
-        $query = "SELECT * FROM contato WHERE idContato = :idContato";
+        session_start();
+        $query = "SELECT * FROM contato WHERE idContato = :idContato and usuarioId = :usuarioId";
         // fields to bind
-        $fields = array(':idContato' => $idContato);
+        $fields = array(':idContato' => $idContato, ':usuarioId' => $_SESSION['usuario']['id']);
         // array return
         $arr = [];
         try {

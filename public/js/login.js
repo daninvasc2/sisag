@@ -1,6 +1,6 @@
 let urlLoginController = '../controller/LoginController.class.php';
 
-const estaNaIndex = window.location.pathname.includes('index.php');
+const estaNaIndex = !window.location.pathname.includes('view/');
 const estaNaTelaDeLogin = window.location.pathname.includes('login.php');
 
 if (estaNaIndex) {

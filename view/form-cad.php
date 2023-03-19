@@ -1,6 +1,7 @@
 <?php
 // configuracoes globais
 include_once '../config/GlobalConfig.php';
+$idContato = $_GET['id'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +31,7 @@ include_once '../config/GlobalConfig.php';
 
     <main class="container-fluid" id="main-container">
         <form id="form-cad-prod">
+        <input type="hidden" name="idContato" id="idContato" value="<?=$idContato?>">
             <div class="form-group">
                 <label for="input-name">Nome</label>
                 <input type="text" class="form-control" id="input-name" name="nome" required
@@ -45,14 +47,14 @@ include_once '../config/GlobalConfig.php';
                 <input type="text" class="form-control" id="input-email" required name="email"
                     placeholder="Informe o email">
             </div>
-            <div>
+            <div id="div-image">
                 <label for="input-image">Foto</label>
                 <input type="file" class="form-control" id="input-image" required name="foto"
                     placeholder="Selecione a foto" accept="image/png, image/jpeg, image/jpg, image/webp">
             </div>
             <a href="listing.php" class="btn btn-secondary mt-2">Voltar</a>
-            <button type="submit" class="btn btn-primary mt-2 mr-2">Cadastrar</button>
-            <input hidden type="text" name="_acao" value="cadastrar">
+            <button type="submit" id="btn-submit" class="btn btn-primary mt-2 mr-2">Cadastrar</button>
+            <input hidden type="text" name="_acao" id="acao" value="cadastrar">
         </form>
     </main>
     <!-- Modal Result -->

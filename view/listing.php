@@ -38,12 +38,13 @@ include_once '../config/GlobalConfig.php';
     </header>
 
     <main class="container-fluid" id="main-container">
-        <table class="table" id="table-products" hidden>
+        <table class="table" id="table-contatos" hidden>
             <thead>
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Quantidade</th>
+                    <th scope="col">img</th>
+                    <th scope="col">nome</th>
+                    <th scope="col">tel</th>
+                    <th scope="col">email</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
