@@ -13,20 +13,20 @@
     <link rel="icon" href=<?php echo '"'.GlobalConfig::$DEFAULT_DIR.'/'.GlobalConfig::$ASSETS_DIR.'/'.'favico.ico"'; ?> >   
 
     <!-- CSS Global -->
-    <link rel="stylesheet" href=<?php echo '"'.GlobalConfig::$DEFAULT_DIR.'/'.GlobalConfig::$DEFAULT_CSS_DIR.'/'.'global.css"' ?> >    
+    <link rel="stylesheet" href=<?php echo '"'.GlobalConfig::$DEFAULT_DIR.'/'.GlobalConfig::$DEFAULT_CSS_DIR.'/'.'global.css"' ?> >
 
     <!-- Bootstrap CDN CSS -->    
     <?php echo GlobalConfig::$BOOTSTRAP_CSS_CDN ?>
     <style>
         main {
-            background-image: url(<?php echo '"./'.GlobalConfig::$ASSETS_DIR.'/'.'bg-main-index.jpg"' ?>);            
+            /* background-image: url(<?php echo '"./'.GlobalConfig::$ASSETS_DIR.'/'.'bg-main-index.jpg"' ?>); */
             background-size: contain;
             background-repeat: no-repeat;
             min-height: 800px;             
         }
         @media screen and (min-width: 1024px) {
             main {
-                background-image: url(<?php echo '"./'.GlobalConfig::$ASSETS_DIR.'/'.'bg-main-index.jpg"' ?>);
+                /* background-image: url(<?php echo '"./'.GlobalConfig::$ASSETS_DIR.'/'.'bg-main-index.jpg"' ?>); */
                 background-size: cover;
                 background-repeat: no-repeat;
             }
@@ -39,6 +39,7 @@
     <header>
         <!-- Header include -->
         <?php include_once './view/header.php'?>
+        <script src = <?php echo '"'.GlobalConfig::$DEFAULT_DIR.'/'.GlobalConfig::$DEFAULT_JS_DIR.'/'.'login.js"' ?>></script>
     </header>
 
     <main class="container-fluid" id="main-container">                

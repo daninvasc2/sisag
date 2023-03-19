@@ -50,7 +50,8 @@ include_once '../config/GlobalConfig.php';
                 <input type="file" class="form-control" id="input-image" required name="foto"
                     placeholder="Selecione a foto" accept="image/png, image/jpeg, image/jpg, image/webp">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Cadastrar</button>
+            <a href="listing.php" class="btn btn-secondary mt-2">Voltar</a>
+            <button type="submit" class="btn btn-primary mt-2 mr-2">Cadastrar</button>
             <input hidden type="text" name="_acao" value="cadastrar">
         </form>
     </main>

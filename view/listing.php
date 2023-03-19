@@ -15,6 +15,7 @@ include_once '../config/GlobalConfig.php';
 
     <!-- CSS Global -->
     <link rel="stylesheet" href=<?php echo '"' . GlobalConfig::$DEFAULT_DIR . '/' . GlobalConfig::$DEFAULT_CSS_DIR . '/' . 'global.css"' ?>>
+    <link rel="stylesheet" href=<?php echo '"' . GlobalConfig::$DEFAULT_DIR . '/' . GlobalConfig::$DEFAULT_CSS_DIR . '/' . 'listing.css"' ?>>
 
     <!-- Bootstrap CDN CSS -->
     <?php echo GlobalConfig::$BOOTSTRAP_CSS_CDN ?>
@@ -26,6 +27,14 @@ include_once '../config/GlobalConfig.php';
     <header>
         <!-- Header include -->
         <?php include_once './header.php' ?>
+        <div class="sub-header d-flex space-around">
+            <h4>Contatos</h4>
+            <a href="form-cad.php">
+                <button type="button" class="btn btn-primary" id="btn-novo-contato">
+                    <i class="fas fa-plus"></i> Cadastrar
+                </button>
+            </a>
+        </div>
     </header>
 
     <main class="container-fluid" id="main-container">

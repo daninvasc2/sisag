@@ -1,10 +1,50 @@
-const urlLoginController = '../controller/LoginController.class.php';
+let urlLoginController = '../controller/LoginController.class.php';
+
+const estaNaIndex = window.location.pathname.includes('index.php');
+const estaNaTelaDeLogin = window.location.pathname.includes('login.php');
+
+if (estaNaIndex) {
+    urlLoginController = 'controller/LoginController.class.php';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    verificarLogin();
+}, false);
+
+function verificarLogin() {
+    if (estaNaTelaDeLogin) {
+        return;
+    }
+
+    $.ajax({
+        url: urlLoginController + '?_acao=verificarLogin',
+        type: 'get',
+        success: function (data) {
+            const retorno = JSON.parse(data);
+            if (retorno.status_code == 200) {
+                if (estaNaIndex) {
+                    window.location.href = "view/listing.php";
+                }
+            } else {
+                if (estaNaIndex) {
+                    window.location.href = "view/login.php";
+                } else {
+                    window.location.href = "login.php";
+                }
+            }
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+
 function sairDoSistema() {
     $.ajax({
         url: urlLoginController + '?_acao=logout',
         type: 'get',
         success: function (data) {
-            window.location.href = "/login.php";
+            window.location.href = "login.php";
         },
         error: function (data) {
             console.log(data);
@@ -25,7 +65,6 @@ function fazerLogin() {
             const retorno = JSON.parse(data);
             if (retorno.status_code == 200) {
                 window.location.href = "listing.php";
-                alert('Login efetuado com sucesso!');
             } else {
                 alert('Login ou senha inválidos!');
             }

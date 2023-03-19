@@ -31,14 +31,15 @@ class ContatoDao
             PRIMARY KEY (id)
             );*/
 
-            $query = "INSERT INTO contato (nome, telefone, email, caminho_foto) VALUES (:nome, :telefone, :email, :caminho_foto)";
+            $query = "INSERT INTO contato (nome, telefone, email, caminho_foto, usuarioId) VALUES (:nome, :telefone, :email, :caminho_foto, :usuarioId)";
 
             // fields to bind
             $fields = array(
                 ':nome' => $contato->get('nome'),
                 ':telefone' => $contato->get('telefone'),
                 ':email' => $contato->get('email'),
-                ':caminho_foto' => $contato->get('foto')
+                ':caminho_foto' => $contato->get('foto'),
+                ':usuarioId' => $contato->get('usuarioId')
             );
 
             $this->conexao->connect();

@@ -10,6 +10,8 @@ class Contato
 
     private $foto;
 
+    private $usuarioId;
+
     public function __construct($pIdContato, $pNome, $pTelefone, $pEmail, $pFoto)
     {
         $this->idContato = $pIdContato;
@@ -17,6 +19,9 @@ class Contato
         $this->telefone = $pTelefone;
         $this->email = $pEmail;
         $this->foto = $pFoto;
+
+        session_start();
+        $this->usuarioId = $_SESSION['usuario']['id'];
     }
 
     // getters
@@ -25,23 +30,21 @@ class Contato
         switch ($atributo) {
             case "idContato":
                 return $this->idContato;
-                break;
 
             case "nome":
                 return $this->nome;
-                break;
 
             case "telefone":
                 return $this->telefone;
-                break;
 
             case "email":
                 return $this->email;
-                break;
 
             case "foto":
                 return $this->foto;
-                break;
+
+            case "usuarioId":
+                return $this->usuarioId;
 
             default:
                 return "Atributo inválido";
@@ -54,23 +57,21 @@ class Contato
         switch ($atributo) {
             case "idContato":
                 return $this->idContato = $valor;
-                break;
 
             case "nome":
                 return $this->nome = $valor;
-                break;
 
             case "telefone":
                 return $this->telefone = $valor;
-                break;
 
             case "email":
                 return $this->email = $valor;
-                break;
 
             case "foto":
                 return $this->foto = $valor;
-                break;
+            
+            case "usuarioId":
+                return $this->usuarioId = $valor;
 
             default:
                 return "Atributo inválido";

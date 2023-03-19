@@ -60,6 +60,16 @@ Class LoginController {
     function handleGetRequest($_acao) {
         switch ($_acao) {
             case 'logout':
+                $this->deslogar();
+                break;
+
+            case 'verificarLogin':
+                session_start();
+                if (isset($_SESSION['usuario'])) {
+                    echo json_encode(array('message' => 'Usuário logado', 'status_code' => 200));
+                } else {
+                    echo json_encode(array('message' => 'Usuário não logado', 'status_code' => 0));
+                }
                 break;
             // poderiam existir outras ações a serem executadas com GET
             default:

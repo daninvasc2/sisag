@@ -52,6 +52,8 @@ function showModalResult() {
         backdrop: "static",
         keyboard: false
     });
+
+    window.location.href = "listing.php";
 }
 
 // handles success request
