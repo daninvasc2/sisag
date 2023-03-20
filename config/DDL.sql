@@ -10,7 +10,7 @@ CREATE TABLE sisag.contato (
   telefone VARCHAR(20) NOT NULL,
   email VARCHAR(100),
   imagem LONGBLOB, -- change to caminho_foto VARCHAR(100) NOT NULL
-  PRIMARY KEY (id)
+  PRIMARY KEY (idContato)
 );
 
 alter table contato add caminho_foto varchar(100) not null;
