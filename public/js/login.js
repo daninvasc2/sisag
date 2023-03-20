@@ -117,10 +117,10 @@ function fazerCadastro() {
         success: function (data) {
             const retorno = JSON.parse(data);
             if (retorno.status_code == 200) {
-                window.location.href = "listing.php";
-                alert("Login efetuado com sucesso!");
+                window.location.href = "login.php";
+                alert("Cadastro realizado com sucesso! Faça seu login.");
             } else {
-                alert("Login ou senha inválidos!");
+                alert("Dados inválidos, verifique os campos!");
             }
         },
         error: function (data) {
