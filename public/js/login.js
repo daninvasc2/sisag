@@ -1,24 +1,29 @@
-let urlLoginController = '../controller/LoginController.class.php';
+let urlLoginController = "../controller/LoginController.class.php";
 
-const estaNaIndex = !window.location.pathname.includes('view/');
-const estaNaTelaDeLogin = window.location.pathname.includes('login.php');
+const estaNaIndex = !window.location.pathname.includes("view/");
+const estaNaTelaDeLogin = window.location.pathname.includes("login.php");
+const estaNaTelaDeCadastro = window.location.pathname.includes("cadastro.php");
 
 if (estaNaIndex) {
-    urlLoginController = 'controller/LoginController.class.php';
+    urlLoginController = "controller/LoginController.class.php";
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    verificarLogin();
-}, false);
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+        verificarLogin();
+    },
+    false
+);
 
 function verificarLogin() {
-    if (estaNaTelaDeLogin) {
+    if (estaNaTelaDeLogin || estaNaTelaDeCadastro) {
         return;
     }
 
     $.ajax({
-        url: urlLoginController + '?_acao=verificarLogin',
-        type: 'get',
+        url: urlLoginController + "?_acao=verificarLogin",
+        type: "get",
         success: function (data) {
             const retorno = JSON.parse(data);
             if (retorno.status_code == 200) {
@@ -41,8 +46,8 @@ function verificarLogin() {
 
 function sairDoSistema() {
     $.ajax({
-        url: urlLoginController + '?_acao=logout',
-        type: 'get',
+        url: urlLoginController + "?_acao=logout",
+        type: "get",
         success: function (data) {
             window.location.href = "login.php";
         },
@@ -55,18 +60,18 @@ function sairDoSistema() {
 function fazerLogin() {
     $.ajax({
         url: urlLoginController,
-        type: 'post',
+        type: "post",
         data: {
-            login: $('#login').val(),
-            senha: $('#senha').val(),
-            _acao: 'login'
+            login: $("#login").val(),
+            senha: $("#senha").val(),
+            _acao: "login"
         },
         success: function (data) {
             const retorno = JSON.parse(data);
             if (retorno.status_code == 200) {
                 window.location.href = "listing.php";
             } else {
-                alert('Login ou senha inválidos!');
+                alert("Login ou senha inválidos!");
             }
         },
         error: function (data) {
@@ -78,27 +83,33 @@ function fazerLogin() {
 function fazerCadastro() {
     let form = document.getElementById("formCadastro");
     let formData = new FormData(form);
-    const nome = $('#nomeCadastro').val();
-    const login = $('#loginCadastro').val();
-    const senha = $('#senhaCadastro').val();
-    const confirmarSenha = $('#confirmarSenha').val();
-    const caminhoFoto = $('#fotoCadastro').val();
+    const nome = $("#nomeCadastro").val();
+    const login = $("#loginCadastro").val();
+    const senha = $("#senhaCadastro").val();
+    const confirmarSenha = $("#confirmarSenha").val();
+    const caminhoFoto = $("#fotoCadastro").val();
     const foto = $("#fotoCadastro")[0].files[0];
     formData.append("foto", foto);
 
-    if (nome == '' || login == '' || senha == '' || confirmarSenha == '' || caminhoFoto == '') {
-        alert('Preencha todos os campos!');
+    if (
+        nome == "" ||
+        login == "" ||
+        senha == "" ||
+        confirmarSenha == "" ||
+        caminhoFoto == ""
+    ) {
+        alert("Preencha todos os campos!");
         return;
     }
 
     if (senha != confirmarSenha) {
-        alert('As senhas não são iguais!');
+        alert("As senhas não são iguais!");
         return;
     }
 
     $.ajax({
         url: urlLoginController,
-        type: 'post',
+        type: "post",
         data: formData,
         cache: false,
         processData: false,
@@ -107,9 +118,9 @@ function fazerCadastro() {
             const retorno = JSON.parse(data);
             if (retorno.status_code == 200) {
                 window.location.href = "listing.php";
-                alert('Login efetuado com sucesso!');
+                alert("Login efetuado com sucesso!");
             } else {
-                alert('Login ou senha inválidos!');
+                alert("Login ou senha inválidos!");
             }
         },
         error: function (data) {

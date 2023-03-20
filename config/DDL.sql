@@ -4,6 +4,7 @@ CREATE USER 'sisag'@'localhost' IDENTIFIED BY 'root';
 -- Criação do database if not exists e tabela contato
 DROP DATABASE IF EXISTS sisag;
 CREATE DATABASE sisag;
+USE sisag;
 CREATE TABLE sisag.contato (
   idContato INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
